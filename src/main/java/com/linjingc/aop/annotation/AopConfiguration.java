@@ -49,16 +49,18 @@ public class AopConfiguration {
      * @param
      */
     @Around("@annotation(UserAop)")
-    public Object around(ProceedingJoinPoint pjp) {
+    public void around(ProceedingJoinPoint pjp) {
         String s = pjp.toString();
         System.out.println(s);
         System.out.println("around method   start ...");
         try {
-            //return pjp.proceed();
-            return "A"; //这里因为注释掉了 原本的返回 所以A直接返回给页面
+            //return
+             pjp.proceed();
+            //return "A"; //这里因为注释掉了 原本的返回 所以A直接返回给页面
+            System.out.println("结束");
         } catch (Throwable throwable) {
             throwable.printStackTrace();
-            return null;
+            //return null;
         } finally {
             System.out.println("around method   end ...");
         }
